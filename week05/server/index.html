@@ -1,28 +1,33 @@
-<html maaa=a>
+<html>
 
 <head>
+    <title>放置文章标题</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <style>
-        body div #myid {
-            width: 100px;
-            background-color: #ff5000;
+        #container {
+            width: 500px;
+            height: 300px;
+            display: flex;
+            background-color: rgb(0, 255, 255);
         }
 
-        body div img {
-            width: 30px;
-            background-color: #f11;
+        #myid {
+            width: 200px;
+            height: 100px;
+            background-color: rgb(255, 0, 0);
         }
 
-        body div .class-a {
-            width: 30px;
-            background-color: #f11;
+        .c1 {
+            flex: 1;
+            background-color: rgb(0, 255, 0);
         }
     </style>
 </head>
 
 <body>
-    <div>
-        <img id="myid" />
-        <img class=" class-a  class-b  " />
+    <div id="container">
+        <div id="myid"></div>
+        <div class="c1"></div>
     </div>
 </body>
 

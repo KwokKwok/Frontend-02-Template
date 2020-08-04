@@ -1,110 +1,111 @@
-const css =require('css');
+const layout = require('./layout');
+const css = require('css');
+
 let currentToken = null;
 let currentAttribute = null;
 
 let stack = [{ type: "document", children: [] }];
 let currentTextNode = null;
 
-let rules=[];
-function addCSSRules(text){
-    let ast=css.parse(text);
+let rules = [];
+function addCSSRules(text) {
+    let ast = css.parse(text);
     rules.push(...ast.stylesheet.rules);
 }
 
 // 简单选择器,1.class，2.id，3.tagname
-function match(element,selector){
-    if(!selector||!element.attributes)
+function match(element, selector) {
+    if (!selector || !element.attributes)
         return false;
 
     switch (selector.charAt(0)) {
         case '#':
             {
-                let attr=element.attributes.filter(item=>item.name==="id")[0]
-                return attr&&attr.value===selector.replace('#','')
+                let attr = element.attributes.filter(item => item.name === "id")[0]
+                return attr && attr.value === selector.replace('#', '')
             }
         case '.':
             {
-                let attr=element.attributes.filter(item=>item.name==="class")[0]
-                return attr&&attr.value.split(' ').indexOf(selector.substring(1))>0;
+                let attr = element.attributes.filter(item => item.name === "class")[0]
+                return attr && attr.value.split(' ').indexOf(selector.substring(1)) > 0;
             }
         default:
-            return element.tagName===selector;
+            return element.tagName === selector;
     }
 }
 
-function specificity(selector){
-    let p=[0,0,0,0];
-    let selectorParts=selector.split(" ");
-    for (const part of seletorParts) {
+function specificity(selector) {
+    let p = [0, 0, 0, 0];
+    let selectorParts = selector.split(" ");
+    for (const part of selectorParts) {
         switch (part.charAt[0]) {
             case '#':
-                p[1]+=1;
+                p[1] += 1;
                 break;
             case '.':
-                p[2]+=1;
+                p[2] += 1;
                 break;
             default:
-                p[3]+=1;
+                p[3] += 1;
                 break;
         }
     }
     return p;
 }
 
-function compareSpecificity(p1,p2){
+function compareSpecificity(p1, p2) {
     for (let i = 0; i < 4; i++) {
-        if(p1[i]==p2[i])
+        if (p1[i] == p2[i])
             continue;
-        return p1[i]-p2[i];
+        return p1[i] - p2[i];
     }
-    return 0;   
+    return 0;
 }
 
-function computeCSS(element){
-    let elements=stack.slice().reverse();
-    if(!element.computedStyle){
-        element.computedStyle={};
+function computeCSS(element) {
+    let elements = stack.slice().reverse();
+    if (!element.computedStyle) {
+        element.computedStyle = {};
     }
 
     for (const rule of rules) {
-        let selectorParts=rule.selectors[0].split(" ").reverse();
+        let selectorParts = rule.selectors[0].split(" ").reverse();
 
-        if(!match(element,selectorParts[0]))
+        if (!match(element, selectorParts[0]))
             continue;
 
-        let matched=false;
+        let matched = false;
 
-        let j=1;
+        let j = 1;
         for (let i = 0; i < elements.length; i++) {
-            if(match(elements[i],selectorParts[j])){
+            if (match(elements[i], selectorParts[j])) {
                 j++;
             }
         }
 
-        if(j>=selectorParts.length){
-            matched=true;
+        if (j >= selectorParts.length) {
+            matched = true;
         }
 
-        if(matched){
+        if (matched) {
             // console.log(`Element ${element.tagName} matched rule '${rule.selectors[0]}'`);
-            let sp=specificity(rule.selectors[0]);
+            let sp = specificity(rule.selectors[0]);
 
-            let computedStyle=element.computedStyle;
+            let computedStyle = element.computedStyle;
             for (const declaration of rule.declarations) {
-                if(!computedStyle[declaration.property]){
-                    computedStyle[declaration.property]={}
-                    computedStyle[declaration.property].value=declaration.value;
-                    computedStyle[declaration.property].specificity=sp;
-                }else{
-                    if(compareSpecificity(sp,computedStyle[declaration.property].specificity)>=0){
-                        computedStyle[declaration.property].value=declaration.value;
-                        computedStyle[declaration.property].specificity=sp;
+                if (!computedStyle[declaration.property]) {
+                    computedStyle[declaration.property] = {}
+                    computedStyle[declaration.property].value = declaration.value;
+                    computedStyle[declaration.property].specificity = sp;
+                } else {
+                    if (compareSpecificity(sp, computedStyle[declaration.property].specificity) >= 0) {
+                        computedStyle[declaration.property].value = declaration.value;
+                        computedStyle[declaration.property].specificity = sp;
                     }
                 }
-                    
+
             }
             console.log(element.computedStyle);
-
         }
     }
 }
@@ -140,9 +141,10 @@ function emit(token) {
         if ((top.tagName !== token.tagName)) {
             throw new Error("Tag start end dosen't match");
         } else {
-            if(top.tagName==="style"){
+            if (top.tagName === "style") {
                 addCSSRules(top.children[0].content);
             }
+            layout(top);
             stack.pop();
         }
         currentTextNode = null;

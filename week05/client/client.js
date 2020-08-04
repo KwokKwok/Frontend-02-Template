@@ -1,3 +1,5 @@
+const render = require('./render');
+const images = require("images");
 const net = require('net');
 const htmlParser = require('./html-parser');
 const { HttpResponseParser } = require('./http-response-parser')
@@ -70,6 +72,8 @@ void async function () {
 
     let response = await request.request();
     let document = htmlParser.parse(response.body);
-    console.log(document)
+    let viewport = images(800, 600);
+    render(viewport, document);
+    viewport.save('viewport.jpg');
 }();
 

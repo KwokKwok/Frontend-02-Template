@@ -37,13 +37,21 @@ CSS2.1标准：
 在[w3.org/TR](w3.org/TR)可以找到各种标准，执行如下代码：
 
 ```js
-Array.prototype.slice.call(document.getElementById("container").children).filter(item=>item.getAttribute("data-tag").match(/css/)).map(item=>({name:item.children[1].innerText,url:item.children[1].children[0].href}))
+Array.prototype.slice.call(document.getElementById("container").children)
+    .filter(item=>item.getAttribute("data-tag").match(/css/))
+    .map(item=>(
+        {name:item.children[1].innerText,url:item.children[1].children[0].href}
+        ));
 ```
 
 完整爬虫代码：
 
 ```js
-let standards = Array.prototype.slice.call(document.getElementById("container").children).filter(item=>item.getAttribute("data-tag").match(/css/)).map(item=>({name:item.children[1].innerText,url:item.children[1].children[0].href}));
+let standards = Array.prototype.slice.call(document.getElementById("container").children)
+    .filter(item=>item.getAttribute("data-tag").match(/css/))
+    .map(item=>(
+            {name:item.children[1].innerText,url:item.children[1].children[0].href}
+        ));
 
 
 // 可以避免跨域的问题

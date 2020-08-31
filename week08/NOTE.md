@@ -140,6 +140,8 @@ CSSStyleRule是其中最重要的
 1. W3C(*webaudio*)
     - 分为IG（*兴趣组*）/CG（*社区组*）/WG（*工作组*）
 
+********
+
 ## 作业：整理浏览器API
 
 分类：
@@ -191,9 +193,7 @@ CSSStyleRule是其中最重要的
     - `on`开头的事件系列
 1. 未整理的...
 
-<hr>
-
-代码：
+### 代码
 
 ```js
 let names = Object.getOwnPropertyNames(window);

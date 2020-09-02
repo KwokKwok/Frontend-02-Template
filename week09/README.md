@@ -46,8 +46,8 @@ tips:
 
 ### **作业*
 
-- [TicTacToc - JS Bin](https://jsbin.com/lorotoz/edit?html,output)
-- [五子棋（*进行中*）]()
+- [TicTacToc](https://jsbin.com/lorotoz/edit?html,output)
+- [五子棋](https://jsbin.com/yurolad/edit?html,output)
 
 ## 二、寻路
 
@@ -114,5 +114,5 @@ Sorted，取的时候拿出来一个最小的。
 
 ### 实现
 
-- [寻路（基础版） - JS Bin](https://jsbin.com/xibetij/edit?html,output)
-- [寻路（优化版，还没做]()
+- [寻路](https://jsbin.com/xibetij/edit?html,output)
+- [寻路 二叉堆版](https://jsbin.com/xehizav/1/edit?html,output)

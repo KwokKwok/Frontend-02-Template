@@ -48,7 +48,7 @@ tips:
 ### **作业*
 
 - [TicTacToc - JS Bin](https://jsbin.com/lorotoz/edit?html,output)
-- [五子棋（*进行中*）]()
+- [五子棋 - JS Bin](https://jsbin.com/yurolad/edit?html,output)
 
 ## 二、寻路
 
@@ -109,12 +109,11 @@ Sorted，取的时候拿出来一个最小的。
     - 使用乘方来计算。因为是给comparer使用，所以可以不开根号。
 1. 每次取出来的都是和终点比较接近的点
 
+### 实现
+
+[寻路 - JS Bin](https://jsbin.com/xibetij/edit?html,output)
+
 ### **优化点*
 
 1. 对寻路冗余的处理
 1. 使用二叉堆替换Sorted以实现更好的性能
-
-### 实现
-
-- [寻路（基础版） - JS Bin](https://jsbin.com/xibetij/edit?html,output)
-- [寻路（优化版，还没做]()

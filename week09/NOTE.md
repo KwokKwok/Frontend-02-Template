@@ -48,7 +48,7 @@ tips:
 ### **作业*
 
 - [TicTacToc - JS Bin](https://jsbin.com/lorotoz/edit?html,output)
-- [五子棋（*进行中*）]()
+- [五子棋 - JS Bin](https://jsbin.com/yurolad/edit?html,output)
 
 ## 二、寻路
 

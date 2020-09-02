@@ -6,7 +6,6 @@
 ### 游戏的基础实现
 
 > 编程训练：算法+数据结构+语言特性
-
 tips:
 
 1. 使用`innerHTML=""`直接清空div
@@ -47,8 +46,8 @@ tips:
 
 ### **作业*
 
-- [TicTacToc - JS Bin](https://jsbin.com/lorotoz/edit?html,output)
-- [五子棋 - JS Bin](https://jsbin.com/yurolad/edit?html,output)
+- [TicTacToc](https://jsbin.com/lorotoz/edit?html,output)
+- [五子棋](https://jsbin.com/yurolad/edit?html,output)
 
 ## 二、寻路
 
@@ -64,7 +63,6 @@ tips:
 ### 地图编辑器
 
 > 重点：寻路算法、算法步骤可视化
-
 创建一个100*100的地图编辑器，实现以下功能：
 
 - 左键按下后滑动鼠标，设置墙
@@ -109,11 +107,12 @@ Sorted，取的时候拿出来一个最小的。
     - 使用乘方来计算。因为是给comparer使用，所以可以不开根号。
 1. 每次取出来的都是和终点比较接近的点
 
-### 实现
-
-[寻路 - JS Bin](https://jsbin.com/xibetij/edit?html,output)
-
 ### **优化点*
 
 1. 对寻路冗余的处理
 1. 使用二叉堆替换Sorted以实现更好的性能
+
+### 实现
+
+- [寻路](https://jsbin.com/xibetij/edit?html,output)
+- [寻路 二叉堆版](https://jsbin.com/xehizav/1/edit?html,output)

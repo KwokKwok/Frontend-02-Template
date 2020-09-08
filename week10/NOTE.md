@@ -2,7 +2,6 @@
 
 未完待续：
 
-1. **KMP算法理解和相关LeetCode题目完成*
 1. **Wildcard算法理解*
 
 ## 一、使用LL算法构建AST
@@ -235,49 +234,68 @@ trie.most();
 
 > 长串中找短的字符串（*pattern*）。名字来自于发明算法的三名计算机科学家的名字。 
 
-1. 构造跳转表格
+1. 构造跳转表格（部分匹配表格）
+    > `aabaaac` -> `[0, 1, 0, 1, 2, 2, 0]`
 2. 模式匹配
 
+LeetCode题解：
+
 ```js
-function kmp(source, pattern) {
-    let table = new Array(pattern.length).fill(0);
-    {
-        let i = 1; j = 0;
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+    if(haystack===null||needle===null){
+        return -1;
+    }
+    needle=String(needle);
+    haystack=String(haystack);
+    
+    if(needle.length===0)
+        return 0;
 
-        while (i < pattern.length) {
-            if (pattern[i] === pattern[j]) {
-                ++j, ++i;
-                table[i] = j;
-            } else {
-                if (j > 0) {
-                    j = table[j];
-                } else
+    let pmt = new Array(needle.length).fill(0);
+
+    {
+        let matchedCount=0;
+        let i=1;
+        while(i<needle.length){
+            if(needle[i]===needle[matchedCount]){
+                matchedCount++;
+                pmt[i]=matchedCount;
+                i++;
+            }else{
+                if(matchedCount>0){
+                    matchedCount=pmt[matchedCount-1];
+                }else{
                     i++;
+                }
             }
         }
     }
 
     {
-        let i = 0, j = 0;
-        while (i < source.length) {
-            if (pattern[i] === source[i]) {
-                ++i, ++j;
-            } else {
-                if (j > 0)
-                    j = table[j];
-                else
+        let i=0,j=0;
+        while(i<haystack.length){
+            if(haystack[i]===needle[j]){
+                i++;
+                j++;
+                if(j===needle.length){
+                    return i-j;
+                }
+            }else{
+                if(j>0){
+                    j=pmt[j-1];
+                }else{
                     i++;
+                }
             }
-
-            if (j === pattern.length)
-                return true;
-
         }
-        return false;
     }
-}
-
-console.log(kmp("Hello", "ll"));
+    return -1;
+};
 ```
 
 ### Wildcard

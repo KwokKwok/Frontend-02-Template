@@ -31,6 +31,10 @@ let po = new Proxy(obj, {
 
 [Map](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map)
 
+可以使用`has`、`set`和`get`进行设置和访问
+
+## 思路
+
 
 
 ## 练习
@@ -39,7 +43,18 @@ let po = new Proxy(obj, {
 
 # 二、Range API和CSSOM
 
+## 基础知识
 
+1. 鼠标抬起事件加在`document`对象上。
+1. range对单个文字的选中。
+
+## 思路
+
+1. 将所有文字解析为range对象，添加加到ranges数组中。
+1. 设置事件监听。
+    1. 监听方块点击事件，此时开始监听document鼠标移动事件。
+    1. 监听document鼠标抬起事件，此时移除对鼠标移动时间的监听。
+1. 鼠标移动事件的处理，判断与鼠标位置最接近的文字（*range对象*），将方块插入对应的range对象中。
 
 ## 练习
 

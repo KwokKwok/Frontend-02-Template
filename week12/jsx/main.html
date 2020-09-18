@@ -1,0 +1,27 @@
+<body>
+    <style>
+        .carousel {
+            overflow: hidden;
+            width: 300px;
+            height: 200px;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .carousel>div {
+            position: absolute;
+            display: inline-block;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            transform: translateX(100%);
+            transition: ease 0.5s;
+        }
+
+        .carousel>div:first-child {
+            transform: none;
+        }
+    </style>
+    <script src="./main.js"></script>
+</body>

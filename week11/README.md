@@ -38,7 +38,6 @@ let po = new Proxy(obj, {
 1. 记录需要监测的对象属性，在set函数执行时，依次触发注册对应属性的监测callback。
     1. 增加effect函数，函数内会执行一个callback，需要将这个callback增加在每个callback内会访问的属性上。
     1. effect内的callback执行前，清空监测列表。在get代理内，不断往监测列表增加记录。在callback执行完，就可以获取到callback所访问的对象。遍历监测列表，将callback添加到监测属性的callback列表。
-    1. 
 1. 为了处理多层对象访问的情况，需要将对象处理成reactive对象保存在reactivies数组内。
 1. 处理调色盘逻辑。
     1. 添加三个进度控件，分别用于控制rgb的三个值。添加一个div，将其背景设置为rgb颜色。

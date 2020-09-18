@@ -118,3 +118,8 @@ module.exports = { // 老的node module常见的配置方式
     ```
 
 4. 
+
+
+6. 
+
+clientX,clientY

@@ -20,6 +20,7 @@ class Carousel extends Component {
         }
 
         let downPoint = null;
+        this.root.addEventListener("drag", () => { })
         this.root.addEventListener("mousedown", event => {
             downPoint = {
                 x: event.clientX,
@@ -28,25 +29,26 @@ class Carousel extends Component {
         })
 
         document.addEventListener("mouseup", event => {
-            console.log("up");
             if (!downPoint) return;
-            let point = {
-                x: event.clientX,
-                y: event.clientY
+            let move = {
+                x: event.clientX - downPoint.x,
+                y: event.clientY - downPoint.y
             }
-            if (point.x === downPoint.x && point.y === downPoint.y) {
+            if (move.x === 0 && move.y === 0) {
                 console.log("click");
             }
-            if (Math.abs(point.x - downPoint.x) < 100) return;
-            currentIndex = (currentIndex + (point.x < downPoint.x ? -1 : 1)) % this.root.children.length;
+            if (Math.abs(move.x) < 100) return;
+            currentIndex = (currentIndex + (move.x > 0 ? -1 : 1)) % this.root.children.length;
             if (currentIndex === -1)
                 currentIndex = this.root.children.length - 1;
-            console.log(currentIndex);
-            next();
+            if (timer)
+                clearTimeout(timer);
+            switchNext();
         })
 
         let currentIndex = 0;
-        let next = () => {
+        let timer = null;
+        let switchNext = () => {
             let children = this.root.children;
             let nextIndex = (currentIndex + 1) % children.length;
 
@@ -61,7 +63,16 @@ class Carousel extends Component {
                 next.style.transform = "none";
                 current.style.transform = `translateX(-100%)`
             }, 16);
+
+            timer = setTimeout(() => {
+                currentIndex = nextIndex;
+                switchNext();
+            }, 1500);
         }
+
+        timer = setTimeout(() => {
+            switchNext();
+        }, 1500);
 
         return this.root;
     }

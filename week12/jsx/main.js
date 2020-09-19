@@ -19,60 +19,78 @@ class Carousel extends Component {
             this.root.appendChild(child);
         }
 
-        let downPoint = null;
-        this.root.addEventListener("drag", () => { })
-        this.root.addEventListener("mousedown", event => {
-            downPoint = {
-                x: event.clientX,
-                y: event.clientY
-            }
-        })
-
-        document.addEventListener("mouseup", event => {
-            if (!downPoint) return;
-            let move = {
-                x: event.clientX - downPoint.x,
-                y: event.clientY - downPoint.y
-            }
-            if (move.x === 0 && move.y === 0) {
-                console.log("click");
-            }
-            if (Math.abs(move.x) < 100) return;
-            currentIndex = (currentIndex + (move.x > 0 ? -1 : 1)) % this.root.children.length;
-            if (currentIndex === -1)
-                currentIndex = this.root.children.length - 1;
-            if (timer)
-                clearTimeout(timer);
-            switchNext();
-        })
-
+        this.root.addEventListener("dragstart", () => false);
         let currentIndex = 0;
+
+        this.root.addEventListener("mousedown", mouseDownEvent => {
+            let moveDistance = (x, y) => { return { x: x - mouseDownEvent.clientX, y: y - mouseDownEvent.clientY } };
+            HTMLElement.prototype.translateX = function (px) {
+                this.style.transform = `translateX(${px}px)`
+            }
+            HTMLElement.prototype.transition = function (trans) {
+                this.style.transition = trans;
+            }
+            let children = this.root.children;
+            let rootWidth = this.root.getBoundingClientRect().width;
+
+            let onmove = e => {
+                let distance = moveDistance(e.clientX, e.clientY);
+                let current = currentIndex - ((distance.x - distance.x % rootWidth) / rootWidth);
+
+                for (const offset of [-2, -1, 0, 1, 2]) {
+                    let pos = current + offset;
+                    pos = (pos + children.length) % children.length;
+                    let child = children[pos];
+                    child.transition("none");
+                    child.translateX(-pos * rootWidth + offset * rootWidth + distance.x % rootWidth);
+                }
+            }
+            let onup = e => {
+                let distance = moveDistance(e.clientX, e.clientY);
+                let x = distance.x;
+                currentIndex -= Math.round(x / rootWidth);
+                let current = currentIndex - ((x - x % rootWidth) / rootWidth);
+
+                for (const offset of [0, -Math.sign(Math.round(x / rootWidth) - x + 250 * Math.sign(x))]) {
+                    let pos = current + offset;
+                    pos = (pos + children.length) % children.length;
+                    let child = children[pos];
+                    child.transition("");
+                    child.translateX(-pos * rootWidth + offset * rootWidth);
+                }
+
+                document.removeEventListener("mouseup", onup);
+                document.removeEventListener("mousemove", onmove);
+            }
+
+            document.addEventListener("mousemove", onmove)
+            document.addEventListener("mouseup", onup)
+        })
+
         let timer = null;
         let switchNext = () => {
             let children = this.root.children;
             let nextIndex = (currentIndex + 1) % children.length;
-
             let current = children[currentIndex];
             let next = children[nextIndex];
 
             next.style.transition = "none";
             next.style.transform = `translateX(100%)`;
-
             setTimeout(() => {
                 next.style.transition = "";
                 next.style.transform = "none";
                 current.style.transform = `translateX(-100%)`
             }, 16);
 
-            timer = setTimeout(() => {
-                currentIndex = nextIndex;
-                switchNext();
-            }, 1500);
+            // timer = setTimeout(() => {
+            //     currentIndex = nextIndex;
+            //     switchNext();
+            // }, 1500);
         }
 
-        timer = setTimeout(() => {
-            switchNext();
-        }, 1500);
+        // timer = setTimeout(() => {
+        //     switchNext();
+        // }, 1500);
 
         return this.root;
     }

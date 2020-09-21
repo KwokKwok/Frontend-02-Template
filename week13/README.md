@@ -28,4 +28,4 @@
 
 ## 随堂练习
 
-[]();
+[时间线和动画](https://jsbin.com/nibuzij/edit?js,output);

@@ -5,7 +5,7 @@ import { Timeline, Animation } from "./animation.js"
 export { STATE, ATTRIBUTES } from "./framework.js"
 
 export class Carousel extends Component {
-    constructor(interval = 3000, animationDuration = 1500, timeFunction = v => v) {
+    constructor(interval = 3000, animationDuration = 500, timeFunction = v => v) {
         super();
         this.interval = interval;
         this.animationDuration = animationDuration;

@@ -4,15 +4,138 @@
 
 ## 一、Yeoman
 
-npm link
+[使用文档](https://yeoman.io/authoring/index.html)
 
-异步任务
+```sh
+# 安装yeoman、generator-generator
+npm install -g yo
+npm install -g generator-generator
+```
 
-用户输入、确认、模板
+### 0. 基础
 
-文件复制
+大体流程：
 
-extendJSON，npminstall
+1. 执行`yo generator ${generator-name}`，按提示创建生成器项目
+1. 进入新创建的文件夹，然后执行[`npm link`](https://javascript.ruanyifeng.com/nodejs/npm.html#toc18)
+1. 完善修改生成器项目
+1. 找一个文件夹，生成项目，执行`yo ${generator-name}`
+
+主要文档结构：
+
+```sh
+├───package.json
+└───generators/
+    ├───app/
+    │   └───index.js
+```
+
+使用生成器生成项目时会顺序执行`generators\app\index.js`下类的各个函数（*一些特殊函数是有默认的优先级的，参见[运行中的上下文](https://yeoman.io/authoring/running-context.html)*）：
+
+```js
+var Generator = require('yeoman-generator');
+
+module.exports = class extends Generator {
+    method1() {
+        this.log('method 1 just ran');
+    }
+
+    method2() {
+        this.log('method 2 just ran');
+    }
+};
+```
+
+### 1. 参数收集
+
+```js
+const Generator = require('yeoman-generator');
+
+module.exports = class extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
+    // 要求必须输入appname
+    this.argument("appname", { type: String, required: true });
+    this.log(this.options.appname);
+  }
+  async prompting() {
+    // 可以输入项目名称，默认为appname
+    const prompts = [
+      {
+        type: "input",
+        name: "projectName",
+        message: "项目名称",
+        default: this.options.appname
+      },
+      {
+        type: 'confirm',
+        name: 'someAnswer',
+        message: 'Would you like to enable this option?',
+        default: true
+      }
+    ];
+
+    this.props = await this.prompt(prompts);
+  }
+
+  writing() {
+    this.log(JSON.stringify(this.props))
+  }
+};
+```
+
+### 2. 文件复制
+
+```js
+// 复制文件夹下面的所有文件，到指定的文件夹
+this.fs.copy(this.templatePath("copy"), this.destinationPath());
+
+// 复制文件，并使用属性填充模板。模板语法 <%= title %>
+this.fs.copyTpl(this.templatePath(`index.html`), this.destinationPath("publish/index.html"), {title:"template title"});
+```
+
+### 3. npm安装
+
+[文档](https://yeoman.io/authoring/dependencies.html)
+
+```js
+const pkgJson = {
+    devDependencies: {
+        eslint: '^3.15.0'
+    },
+    dependencies: {
+        react: '^16.2.0'
+    }
+};
+
+// 写package.json
+this.fs.extendJSON(this.destinationPath('package.json'), pkgJson);
+
+
+// 调用npm install
+this.npmInstall();
+
+// 也可以使用yarn
+this.yarnInstall(['lodash'], { 'dev': true });
+```
+
+### 4. 其他
+
+```js
+// 多彩控制台输出
+const yosay = require('yosay');
+const chalk = require("chalk");
+
+_yosay(msg, color = "yellowBright") {
+    this.log(yosay(chalk[color](msg)));
+}
+
+method1(){
+    _yosay("done");
+    // 执行命令行
+    this.spawnCommand(`code ${this.destinationPath()}`);
+}
+```
 
 ## 二、Webpack基础
 

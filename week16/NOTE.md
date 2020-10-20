@@ -137,6 +137,18 @@ method1(){
 }
 ```
 
+### **关于npm包的发布和删除*
+
+```bash
+npm login
+
+# 发布
+npm publish
+
+# 删除。72小时内可删除，删除24小时内不能重新发布
+npm unpublish yuyy-test-pkg --force
+```
+
 ## 二、Webpack基础
 
 build能力

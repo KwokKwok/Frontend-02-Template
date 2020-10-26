@@ -149,6 +149,12 @@ npm publish
 npm unpublish yuyy-test-pkg --force
 ```
 
+### 成果
+
+[generator-kkvue](https://www.npmjs.com/package/generator-kkvue) 
+
+[![npm version](https://badge.fury.io/js/generator-kkvue.svg)](//npmjs.com/package/generator-kkvue)
+
 ## 二、Webpack基础
 
 build能力
@@ -178,10 +184,10 @@ plugin更像是独立的工具
 
 ## 三、Babel基础
 
-babel 独立系统
+知识点：
 
-babel 配置很多，预设了一些常见的配置。
+1. babel是一个独立的系统，用于将代码转译为旧标准的js代码，以兼容旧浏览器。
+1. 如果不用插件的话，babel会将输入原样输出。它的转译依赖一系列插件。
+1. babel 配置插件很多，为了方便使用预设了一些常见的配置，比如最常用的`@babel/preset-env`。
+1. 配置使用`.babelrc`文件。常配合webpack使用，在webpack配置中进行配置。
 
-babel的安装。
-
-babelrc文件，json配置

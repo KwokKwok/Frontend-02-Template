@@ -25,13 +25,13 @@
 <a name="f52y3"></a>
 ## 重学JavaScript（2-3）
 
-1. [产生式、语言、编程语言](https://www.yuque.com/docs/share/a5325cb0-673d-47b9-b971-9441e1d9230c?# 《产生式、语言、编程语言》)
-1. [JS之基本元素、表达式、语句、结构化](https://www.yuque.com/docs/share/2e6ecffd-2af3-45e0-9fe8-a018f8bbc51e?# 《JS之基本元素、表达式、语句、结构化》)，从JS语法入手，讲语义和运行时。
+1. [产生式、语言、编程语言](https://www.yuque.com/docs/share/a5325cb0-673d-47b9-b971-9441e1d9230c)
+1. [JS之基本元素、表达式、语句、结构化](https://www.yuque.com/docs/share/2e6ecffd-2af3-45e0-9fe8-a018f8bbc51e)，从JS语法入手，讲语义和运行时。
 
 <br />
 <a name="JcVwf"></a>
 ## 浏览器工作原理（4-5）
-> 通过[Toy Browser](https://www.yuque.com/docs/share/7ff73bb7-197f-4c6b-9c13-c270870a4154?# 《Toy Browser》)熟悉浏览器工作原理
+> 通过[Toy Browser](https://www.yuque.com/docs/share/7ff73bb7-197f-4c6b-9c13-c270870a4154)熟悉浏览器工作原理
 
 
 <br />流程：
@@ -49,7 +49,7 @@
 > CSS语法包含@规则和普通规则。CSS选择器部分（语法、优先级、伪类和伪元素）、盒与排版（讲了正常流和Flex）、动画与绘制。
 > 整理了[CSS属性](https://mubu.com/doc/4rQ9Lx5PjC7#m)
 
-[重学CSS](https://www.yuque.com/docs/share/89e574cc-bfb3-49d9-a030-ba56b4934681?# 《重学CSS》)<br />
+[重学CSS](https://www.yuque.com/docs/share/89e574cc-bfb3-49d9-a030-ba56b4934681)<br />
 
 <a name="lnOgL"></a>
 ## 重学HTML、浏览器API（8）
@@ -57,15 +57,15 @@
 > API主要分为四类：DOM、CSSOM、CSSOM View、其他（各种标准化组织制定的）
 > 通过代码整理了各种API
 
-[HTML与浏览器API](https://www.yuque.com/docs/share/5b008cd4-c82d-4d9d-b91c-c927d875e9a4?# 《HTML与浏览器API》)<br />
+[HTML与浏览器API](https://www.yuque.com/docs/share/5b008cd4-c82d-4d9d-b91c-c927d875e9a4)<br />
 
 <a name="IDdlx"></a>
 ## 编程与算法训练（9-11）
 > 通过TicTacToc小游戏，讲解基本的数据结构和AI算法。通过寻路，实现一个地图编辑器，讲解一些算法可视化的知识，广度优先算法和启发式搜索的概念。
 > 通过使用LL算法构建语法树讲解基础的语法分析。并实现了几种字符串分析算法，Tire树、KMP、Wildcard
 
-1. [算法训练游戏：TicTacToc和寻路](https://www.yuque.com/docs/share/1134c78f-c774-4d9d-8844-3f1c56550c21?# 《算法训练游戏：TicTacToc和寻路》)
-1. [语法分析和字符串分析](https://www.yuque.com/docs/share/4b4b8998-bf83-43e2-a409-28c7143b1ae4?# 《语法分析和字符串分析 》)
+1. [算法训练游戏：TicTacToc和寻路](https://www.yuque.com/docs/share/1134c78f-c774-4d9d-8844-3f1c56550c21)
+1. [语法分析和字符串分析](https://www.yuque.com/docs/share/4b4b8998-bf83-43e2-a409-28c7143b1ae4)
 
 
 
@@ -77,16 +77,16 @@
 
 <br />
 
-1. [Proxy代理与双向绑定、Range API和CSSOM](https://www.yuque.com/docs/share/3ffa0592-e5b0-4141-9a62-30b3030e1493?# 《Proxy代理与双向绑定、Range API和CSSOM》)
-1. [组件化基础、JSX语法解析。与Carousel组件](https://www.yuque.com/docs/share/4d69250c-0111-4d4b-865e-d358d6e5a1be?# 《组件化基础、JSX语法解析。与Carousel组件》)
+1. [Proxy代理与双向绑定、Range API和CSSOM](https://www.yuque.com/docs/share/3ffa0592-e5b0-4141-9a62-30b3030e1493)
+1. [组件化基础、JSX语法解析。与Carousel组件](https://www.yuque.com/docs/share/4d69250c-0111-4d4b-865e-d358d6e5a1be)
 
 
 
 <a name="f5zbh"></a>
 ## 工具链（16-17）
 
-1. [Yeoman、Webpack与Babel基础](https://www.yuque.com/docs/share/f3d95f60-32a3-4747-aba0-b03148d19087?# 《Yeoman、Webpack与Babel基础》)
-1. [测试：mocha和nyc的基本使用](https://www.yuque.com/docs/share/29fa6103-bc65-4381-bf4a-047810b8b4cb?# 《测试：mocha和nyc的基本使用》)
+1. [Yeoman、Webpack与Babel基础](https://www.yuque.com/docs/share/f3d95f60-32a3-4747-aba0-b03148d19087)
+1. [测试：mocha和nyc的基本使用](https://www.yuque.com/docs/share/29fa6103-bc65-4381-bf4a-047810b8b4cb)
 
 <br />
 <a name="Nhjvq"></a>

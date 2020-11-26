@@ -30,9 +30,10 @@
 
 <br />
 <a name="JcVwf"></a>
-## 浏览器工作原理（4-5）
-> 通过[Toy Browser](https://www.yuque.com/docs/share/7ff73bb7-197f-4c6b-9c13-c270870a4154)熟悉浏览器工作原理
 
+## 浏览器工作原理（4-5）
+
+> 通过[Toy Browser](https://www.yuque.com/docs/share/7ff73bb7-197f-4c6b-9c13-c270870a4154) 熟悉浏览器工作原理
 
 <br />流程：
 
@@ -90,8 +91,11 @@
 
 <br />
 <a name="Nhjvq"></a>
+
 ## 发布系统（18-19）
+
 > 首先讲了一些Linux虚拟机操作和node环境、端口映射、SSH和SCP等基础知识。然后讲了express框架（发起请求与响应请求、nodejs流、文件传输和压缩）和[github oAuth授权](https://www.ruanyifeng.com/blog/2019/04/github-oauth.html)。
+
 > 讲了daily build和BVT（构建验证测试。冒烟测试。提交之前先进行简单的验证），然后介绍了如何利用Git进行ESLint检查。最后介绍了Chrome的headless模式（[pupperteer](https://github.com/puppeteer/puppeteer)模块）
 
 
